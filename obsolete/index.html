@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello Friend</title>
+
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+
+<link href="css/legend.css" rel="stylesheet" type="text/css">  
+<link href="css/popup.css" rel="stylesheet" type="text/css">  
+<link href="css/filter.css" rel="stylesheet" type="text/css"> 
+<link href="css/analtog.css" rel="stylesheet" type="text/css"> 
+<link href="css/var.css" rel="stylesheet" type="text/css"> 
+
+
+<style>
+
+body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+<!-- <nav id="filter-group" class="filter-group"></nav> -->
+
+<!-- LEGEND -->
+
+<div id='console'>
+    <h1>Powering Europe</h1>
+    <p>A catalog of Central and Western Europe's power generation facilities. </p>
+    <p>Source: Global Power Dataset 1.3.0, World Resources Institue 2021.</p>
+    <div class = "leg-lines"></div>
+
+    <div class = "legendtit">Primary Fuel</div>
+
+    <div class='session checked' id = "Biomass">
+      <span class="hr-square" style="background: #9e5418;"></span><span class="dotlable">Biomass</span><span class="checkmark" id = "Biomass">✔</span>
+    </div>
+    <div class ='session checked' id = "Coal"> 
+      <span class="hr-square" style="background: #fc0303;"></span><span class="dotlable">Coal</span><span class="checkmark" id = "Coal">✔</span>
+    </div>
+    <div class ='session checked' id = "Gas"> 
+        <span class="hr-square" style="background: #e01075;"></span><span class="dotlable">Gas</span><span class="checkmark" id = "Gas">✔</span>
+    </div>
+    <div class ='session checked' id = "Geothermal"> 
+        <span class="hr-square" style="background: #8800ff;"></span><span class="dotlable">Geothermal</span><span class="checkmark" id = "Geothermal">✔</span>
+    </div>
+    <div class ='session checked' id = "Hydro"> 
+        <span class="hr-square" style="background: #0398fc;"></span><span class="dotlable">Hydro</span><span class="checkmark" id = "Hydro">✔</span>
+    </div>
+    <div class ='session checked' id = "Nuclear"> 
+        <span class="hr-square" style="background: #ff00f7;"></span><span class="dotlable">Nuclear</span><span class="checkmark" id = "Nuclear">✔</span>
+    </div>
+    <div class ='session checked' id = "Oil"> 
+        <span class="hr-square" style="background: #eb7f7f;"></span><span class="dotlable">Oil</span><span class="checkmark" id = "Oil">✔</span>
+    </div>
+    <div class ='session checked' id = "Solar"> 
+        <span class="hr-square" style="background: #e3bb0e;"></span><span class="dotlable">Solar</span><span class="checkmark" id = "Solar">✔</span>
+    </div>
+    <div class ='session checked' id = "Tidal"> 
+        <span class="hr-square" style="background: #1859c9;"></span><span class="dotlable">Wave & Tidal</span><span class="checkmark" id = "Tidal">✔</span>
+    </div>
+    <div class ='session checked' id = "Wind"> 
+        <span class="hr-square" style="background: #12c474;"></span><span class="dotlable">Wind</span><span class="checkmark" id = "Wind">✔</span>
+    </div>
+    
+</div>
+
+<div class="dropdown">
+    <button class = "legendtit">Choose Symbology</button>
+    <div class="dropdown-options">
+      <a id = "anal1" class = "checked">Plant Capacity</a>
+      <a id = "anal2" class = "nocheck">Generated Power</a>
+      <a id = "anal3"" class = "nocheck">Capacity Factor</a>
+    </div>
+  </div>
+
+<!-- <div id='analtog'> 
+    <div class='session checked' id = "anal1">
+        <span class="dotlable">Plant Capacity</span><span class="checkmark">✔</span>
+    </div>
+    <div class='session checked' id = "anal2">
+        <span class="dotlable">Generated Power</span><span class="checkmark">✔</span>
+    </div>
+    <div class='session checked' id = "anal3">
+        <span class="dotlable">Capacity Factor</span><span class="checkmark">✔</span>
+    </div>
+</div> -->
+
+    
+</div>
+
+<script src="script.js"></script>
+ 
+</body>
+</html> 
