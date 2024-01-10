@@ -147,29 +147,51 @@ map.on('load', () => {
         return center;
     }
 
+    // this function adds a common to numbers  
+    function numberWithCommas(x) {
+        x = x.toString();
+        var pattern = /(-?\d+)(\d{3})/;
+        while (pattern.test(x))
+            x = x.replace(pattern, "$1,$2");
+        return x;
+    }
+
     map.on('click', 'A-PrimStyle', (e) => {
         new mapboxgl.Popup()
         feature = e.features[0]
-        // console.log(feature.geometry.coordinates[0])
+        console.log(feature.geometry.coordinates[0])
+
+        // clean popup numbers 
+        let plant_cap = numberWithCommas(Math.round(feature.properties.capacity_m))
+        let pow_gen = numberWithCommas(Math.round(feature.properties.estimate_4))
+        let cap_fac = Math.round(feature.properties.CapFac*100)
+
         popup.setLngLat(feature.geometry.coordinates)
         // popup.setLngLat(getFeatureCenter(feature))
         // popup.setLngLat(e.lngLat)
-        .setHTML(`<poptit>
-                    ${feature.properties.name}
-                    </poptit>
-                <div class = "pop-lines"></div>
-                <div class = "pop-session">
-                  <left>Primary Fuel</left><right>${feature.properties.primary_fu}</right>
+        .setHTML(`
+                <div class = "pop-title">${feature.properties.name}</div>
+                <div class = "pop-line"></div>
+
+                <div class = "pop-entry">
+                    <div class = "pop-field">Primary Fuel</div>
+                    <div class = "pop-value">${feature.properties.primary_fu}</div>
                 </div>
-                <div class = "pop-session">
-                    <left>Capacity</left><right>${feature.properties.capacity_m}</right>
+                <div class = "pop-entry">
+                    <div class = "pop-field">Plant Capacity</div>
+                    <div class = "pop-unit">(MW)</div>
+                    <div class = "pop-value">${plant_cap}</div>
                 </div>
-                <div class = "pop-session">
-                    <left>Power Generation</left><right>${feature.properties.estimate_4}</right>
+                <div class = "pop-entry">
+                    <div class = "pop-field">Power Generation</div>
+                    <div class = "pop-unit">(GW)</div>
+                    <div class = "pop-value">${pow_gen}</div>
                 </div>
-                <div class = "pop-session">
-                <left>Capacity Factor</left><right>${feature.properties.CapFac}</right>
-            </div>
+                <div class = "pop-entry">
+                    <div class = "pop-field">Capacity Factor</div>
+                    <div class = "pop-unit">%</div>
+                    <div class = "pop-value">${cap_fac}</div>
+                </div>
                   `)
         .addTo(map);
     });
@@ -271,22 +293,25 @@ map.on('load', () => {
         // console.log(sessionDiv)
 
         sessionDiv.addEventListener('click', (e) => {
-            // console.log(e.srcElement)
+
+            let parent_element = sessionDiv.parentElement.parentElement
             filter_select = e.target.id
 
             if (filter_cats.includes(filter_select)){
-
                 const del_index = filter_cats.indexOf(filter_select);
                 const new_filter =filter_cats.splice(del_index, 1);
-                sessionDiv.classList.add("checked");
-                document.getElementById(cats[i]).getElementsByClassName("hr-square")[0].classList.remove("nocheck")
+                sessionDiv.classList.add("active");
+                parent_element.classList.add("active")
+                let ID_symbol = cats[i].concat("_symbol")
+                document.getElementById(ID_symbol).classList.add("active");
             }
             else{
-   
                 const new_filter = filter_cats.push(filter_select)
                 sessionDiv.checked = false;
-                sessionDiv.classList.remove("checked");
-                document .getElementById(cats[i]).getElementsByClassName("hr-square")[0].classList.add("nocheck")
+                sessionDiv.classList.remove("active");
+                parent_element.classList.remove("active")
+                let ID_symbol = cats[i].concat("_symbol")
+                document.getElementById(ID_symbol).classList.remove("active");
             }
 
             if (filter_cats.length > 0){
@@ -321,10 +346,7 @@ map.on('load', () => {
                 const ID_name = hash.concat(anals[i])
 
                 if (anals[i] != clickedLayer){
-                    console.log(i)
-
-                    
-                    
+                    // console.log(i)
                     // map.setLayoutProperty(anals[i], 'visibility', 'none');
 
                     let noclickDiv = document.querySelector(ID_name);
@@ -335,7 +357,7 @@ map.on('load', () => {
                     // map.setLayoutProperty(anals[i], 'visibility', 'visible');
                     // 'A-PrimStyle' = anals[i]
                     
-                    console.log(dropDownButton.textContent)
+                    // console.log(dropDownButton.textContent)
                     dropDownButton.textContent = e.target.text
                     map.setPaintProperty('A-PrimStyle', 'circle-radius', radius_styling[i])
                     map.setPaintProperty('A-Hover-point', 'circle-radius', radius_styling[i])

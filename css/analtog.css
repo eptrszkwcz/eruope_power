@@ -9,6 +9,14 @@
     /* opacity: 0.8; */
   }
 
+.legendtit {
+font-size: 16px;
+font-weight: 600;
+line-height: 20px;
+color: var(--prim_color);
+margin-bottom: 15px;
+}
+
 .dropdown {
     position: absolute;
     /* width: 220px; */

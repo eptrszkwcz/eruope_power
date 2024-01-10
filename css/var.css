@@ -1,6 +1,6 @@
 :root {
-    --bg_color: rgba(72, 72, 72, 0.94);
-    --bghov_color: rgba(100, 100, 100, 0.94);
+    --bg_color: rgba(72, 72, 72, 0.9);
+    --bghov_color: rgba(100, 100, 100, 0.9);
 
     --prim_color: rgba(235, 235, 235, 1);
     --sec_color: rgba(174, 174, 174, 1); 
@@ -9,4 +9,10 @@
     --highl_color: rgba(0, 255, 255, 0.807);
 
     --font_default: 400 14px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  }
+
+  p {
+    color: var(--sec_color);
+    font-size: 14px;
+    font-weight: 400;
   }

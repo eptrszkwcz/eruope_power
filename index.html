@@ -9,12 +9,13 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 
-<link href="css/legend.css" rel="stylesheet" type="text/css">  
+<!-- <link href="css/legend.css" rel="stylesheet" type="text/css">   -->
 <link href="css/popup.css" rel="stylesheet" type="text/css">  
 <link href="css/filter.css" rel="stylesheet" type="text/css"> 
 <link href="css/analtog.css" rel="stylesheet" type="text/css"> 
-<link href="css/toggle.css" rel="stylesheet" type="text/css">
+<!-- <link href="css/toggle.css" rel="stylesheet" type="text/css"> -->
 <link href="css/var.css" rel="stylesheet" type="text/css"> 
+<link href="css/console.css" rel="stylesheet" type="text/css"> 
 
 
 <style>
@@ -31,45 +32,101 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, s
 
 <!-- LEGEND -->
 
-<div id='console'>
-    <h1>Powering Europe</h1>
-    <p>A catalog of Central and Western Europe's power generation facilities. </p>
-    <p>Source: Global Power Dataset 1.3.0, World Resources Institue 2021.</p>
-    <div class = "leg-lines"></div>
+<div class = "console">
+    <div class = "title-block">
+        <div class = "title">Powering Europe</div>
+        <div class = "leg-line"></div>
+        <div class = "proj-des">Western and Central Europe is home to over 17,000 power generation facilities. This map catalogs their location, generating capacity, and other features.</div>
+        <!-- <p>Source: Global Power Dataset 1.3.0, World Resources Institue 2021.</p> -->
+        <br>
+        <div class = "proj-des">Source: Global Power Dataset 1.3.0, World Resources Institue 2021.</div>
+    </div>
+    <div class = "title-block">
+        <div class = "legend-label">Primary Fuel</div>
+        <div class = "legend">
 
-    <div class = "legendtit">Primary Fuel</div>
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #9e5418;" id="Biomass_symbol"></div>
+                <div class = "symbol-label active">Biomass</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Biomass"></div>
+                </div>
+            </div>
 
-    <div class='session checked' id = "Biomass">
-      <span class="hr-square" class='' style="background: #9e5418;"></span><span class="dotlable">Biomass</span><span class="checkmark" id = "Biomass"><input type="checkbox" id="switch" /><label for="switch" ></label></span>
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #fc0303;" id="Coal_symbol"></div>
+                <div class = "symbol-label active">Coal</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Coal"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #e01075;" id="Gas_symbol"></div>
+                <div class = "symbol-label active">Gas</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Gas"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #8800ff;" id="Geothermal_symbol"></div>
+                <div class = "symbol-label active">Geothermal</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Geothermal"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #0398fc;" id="Hydro_symbol"></div>
+                <div class = "symbol-label active">Hydro</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Hydro"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #ff00f7;" id="Nuclear_symbol"></div>
+                <div class = "symbol-label active">Nuclear</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Nuclear"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #eb7f7f;" id="Oil_symbol"></div>
+                <div class = "symbol-label active">Oil</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Oil"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #e3bb0e;" id="Solar_symbol"></div>
+                <div class = "symbol-label active">Solar</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Solar"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active">
+                <div class = "symbol active" style="background-color: #1859c9;" id="Tidal_symbol"></div>
+                <div class = "symbol-label active">Tidal</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Tidal"></div>
+                </div>
+            </div>
+
+            <div class = "legend-entry active" style = "margin-bottom: 0;">
+                <div class = "symbol active" style="background-color: #12c474;" id="Wind_symbol"></div>
+                <div class = "symbol-label active">Wind</div>
+                <div class = "toggle-space">
+                    <div class = "toggle active" id = "Wind"></div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class ='session checked' id = "Coal"> 
-      <span class="hr-square" style="background: #fc0303;"></span><span class="dotlable">Coal</span><span class="checkmark" id = "Coal">✔</span>
-    </div>
-    <div class ='session checked' id = "Gas"> 
-        <span class="hr-square" style="background: #e01075;"></span><span class="dotlable">Gas</span><span class="checkmark" id = "Gas">✔</span>
-    </div>
-    <div class ='session checked' id = "Geothermal"> 
-        <span class="hr-square" style="background: #8800ff;"></span><span class="dotlable">Geothermal</span><span class="checkmark" id = "Geothermal">✔</span>
-    </div>
-    <div class ='session checked' id = "Hydro"> 
-        <span class="hr-square" style="background: #0398fc;"></span><span class="dotlable">Hydro</span><span class="checkmark" id = "Hydro">✔</span>
-    </div>
-    <div class ='session checked' id = "Nuclear"> 
-        <span class="hr-square" style="background: #ff00f7;"></span><span class="dotlable">Nuclear</span><span class="checkmark" id = "Nuclear">✔</span>
-    </div>
-    <div class ='session checked' id = "Oil"> 
-        <span class="hr-square" style="background: #eb7f7f;"></span><span class="dotlable">Oil</span><span class="checkmark" id = "Oil">✔</span>
-    </div>
-    <div class ='session checked' id = "Solar"> 
-        <span class="hr-square" style="background: #e3bb0e;"></span><span class="dotlable">Solar</span><span class="checkmark" id = "Solar">✔</span>
-    </div>
-    <div class ='session checked' id = "Tidal"> 
-        <span class="hr-square" style="background: #1859c9;"></span><span class="dotlable">Wave & Tidal</span><span class="checkmark" id = "Tidal">✔</span>
-    </div>
-    <div class ='session checked' id = "Wind"> 
-        <span class="hr-square" style="background: #12c474;"></span><span class="dotlable">Wind</span><span class="checkmark" id = "Wind">✔</span>
-    </div>
-    
 </div>
 
 <div class="dropdown">
