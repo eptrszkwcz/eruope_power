@@ -379,41 +379,42 @@ map.on('load', () => {
         }
     }
 
+        // INSTRUCTION POPUP -ANALYSIS BUTTON ---------------------------------------------------------------
+
     const elementToHover = document.getElementById('dropdown-butt');
     const elementToPopup = document.getElementById('instruct-anal');
 
-
     elementToHover.addEventListener('mouseenter',(e) => {
 
-            // e.addEventListener('timeupdate',timedMsg)
+        var rect = elementToHover.getBoundingClientRect();
 
-            var rect = elementToHover.getBoundingClientRect();
+        let posX = (rect.right+rect.left)/2
+        let posY = rect.bottom 
 
-            let posX = (rect.right+rect.left)/2
-            let posY = rect.bottom 
-
-            console.log(e.timeStamp)
-
-
-            setTimeout(function () {
+        var m_pos_x,m_pos_y;
+   
+        window.onmousemove = function(e) { m_pos_x = e.pageX; m_pos_y = e.pageY; }
+        setTimeout(function() { 
+            m_pos_x
+            m_pos_y
+            if (m_pos_x > rect.left && m_pos_x < rect.right && m_pos_y > rect.top && m_pos_y < rect.bottom) {
+                console.log("STILL INSIDE")
                 elementToPopup.style.display = 'block';
                 elementToPopup.style.left = `${posX}px`;
                 elementToPopup.style.top = `${posY}px`;
-            }, 2000);
-
-            // elementToPopup.style.display = 'block';
-            // elementToPopup.style.left = `${posX}px`;
-            // elementToPopup.style.top = `${posY}px`;
+                }
+            else {
+                console.log("SHE GOWN")
+            }; },2000);
 
     });
 
-    // elementToHover.addEventListener('mouseover', (e) => {
-    //     console.log(e.timeStamp)
-    // });
 
     elementToHover.addEventListener('mouseleave',(f) => {
-            console.log(f.timeStamp)
-            elementToPopup.style.display = 'none';
+
+        var time_ex = f.timeStamp/1000
+        elementToPopup.style.display = 'none';
     });
+
     
 });
