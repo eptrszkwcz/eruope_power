@@ -26,16 +26,16 @@ const anals = ["anal1", "anal2", "anal3"];
 
 const radius_styling = [
     [ 'interpolate', ['linear'], ['get', 'capacity_m'],
-        0, 1.5,
+        0, 1.55,
         5000,25],
     [ 'interpolate', ['linear'], ['get', 'estimate_4'],
-        0, 1.5,
-        33000,25
-    ],
+        0, 1.55,
+        33000,25],
     [ 'interpolate', ['linear'], ['get', 'CapFac'],
-        0.5, 1.5,
+        0.5, 1.55,
         1,25]
 ]
+
 
 // let 'A-PrimStyle' = "anal1"
 
@@ -299,7 +299,7 @@ map.on('load', () => {
 
             if (filter_cats.includes(filter_select)){
                 const del_index = filter_cats.indexOf(filter_select);
-                const new_filter =filter_cats.splice(del_index, 1);
+                const new_filter = filter_cats.splice(del_index, 1);
                 sessionDiv.classList.add("active");
                 parent_element.classList.add("active")
                 let ID_symbol = cats[i].concat("_symbol")
@@ -352,6 +352,9 @@ map.on('load', () => {
                     let noclickDiv = document.querySelector(ID_name);
                     const noclickclass = noclickDiv.classList;
                     noclickclass.remove("checked")
+
+                    document.getElementById("entry-".concat(i)).classList.remove("active");
+
                 }
                 else {
                     // map.setLayoutProperty(anals[i], 'visibility', 'visible');
@@ -359,9 +362,13 @@ map.on('load', () => {
                     
                     // console.log(dropDownButton.textContent)
                     dropDownButton.textContent = e.target.text
-                    map.setPaintProperty('A-PrimStyle', 'circle-radius', radius_styling[i])
-                    map.setPaintProperty('A-Hover-point', 'circle-radius', radius_styling[i])
-                    map.setPaintProperty('A-Click-point', 'circle-radius', radius_styling[i])
+                    map.setPaintProperty('A-PrimStyle', 'circle-radius', radius_styling[i]);
+                    map.setPaintProperty('A-Hover-point', 'circle-radius', radius_styling[i]);
+                    map.setPaintProperty('A-Click-point', 'circle-radius', radius_styling[i]);
+
+                    document.getElementById("entry-".concat(i)).classList.add("active");
+                    // document.getElementById("entry-".concat(2)).classList.toggle("active");
+                    // document.getElementById("entry-".concat(intlist[i+1])).classList.remove("active");
                 
                     const clickclass = sessionDiv.classList;
                     let clickDiv = document.querySelector(ID_name);
@@ -372,5 +379,41 @@ map.on('load', () => {
         }
     }
 
+    const elementToHover = document.getElementById('dropdown-butt');
+    const elementToPopup = document.getElementById('instruct-anal');
 
+
+    elementToHover.addEventListener('mouseenter',(e) => {
+
+            // e.addEventListener('timeupdate',timedMsg)
+
+            var rect = elementToHover.getBoundingClientRect();
+
+            let posX = (rect.right+rect.left)/2
+            let posY = rect.bottom 
+
+            console.log(e.timeStamp)
+
+
+            setTimeout(function () {
+                elementToPopup.style.display = 'block';
+                elementToPopup.style.left = `${posX}px`;
+                elementToPopup.style.top = `${posY}px`;
+            }, 2000);
+
+            // elementToPopup.style.display = 'block';
+            // elementToPopup.style.left = `${posX}px`;
+            // elementToPopup.style.top = `${posY}px`;
+
+    });
+
+    // elementToHover.addEventListener('mouseover', (e) => {
+    //     console.log(e.timeStamp)
+    // });
+
+    elementToHover.addEventListener('mouseleave',(f) => {
+            console.log(f.timeStamp)
+            elementToPopup.style.display = 'none';
+    });
+    
 });
