@@ -82,7 +82,7 @@ background-color: var(--bghov_color);
 }
 
 
-#instruct-anal {
+.instruct {
     display: none;
     /* left: 50%;  */
     transform: translate(-50%, -5%); 
@@ -97,4 +97,15 @@ background-color: var(--bghov_color);
     border-radius: 5px;
     transition-property: display;
     transition-delay: 5s;
+}
+
+.triangle {
+    display: none;
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #037ffc;
+    opacity: 0.8;
 }

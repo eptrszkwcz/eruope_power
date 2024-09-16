@@ -379,10 +379,11 @@ map.on('load', () => {
         }
     }
 
-        // INSTRUCTION POPUP -ANALYSIS BUTTON ---------------------------------------------------------------
+    // INSTRUCTION POPUP -ANALYSIS BUTTON ---------------------------------------------------------------
 
     const elementToHover = document.getElementById('dropdown-butt');
     const elementToPopup = document.getElementById('instruct-anal');
+    const triangToPopup = document.getElementById('popup tip');
 
     elementToHover.addEventListener('mouseenter',(e) => {
 
@@ -394,27 +395,68 @@ map.on('load', () => {
         var m_pos_x,m_pos_y;
    
         window.onmousemove = function(e) { m_pos_x = e.pageX; m_pos_y = e.pageY; }
+
         setTimeout(function() { 
             m_pos_x
             m_pos_y
             if (m_pos_x > rect.left && m_pos_x < rect.right && m_pos_y > rect.top && m_pos_y < rect.bottom) {
-                console.log("STILL INSIDE")
                 elementToPopup.style.display = 'block';
                 elementToPopup.style.left = `${posX}px`;
                 elementToPopup.style.top = `${posY}px`;
+
+                triangToPopup.style.display = 'block';
+                triangToPopup.style.left = `${posX}px`;
+                triangToPopup.style.top = `${posY-12}px`;
                 }
-            else {
-                console.log("SHE GOWN")
-            }; },2000);
+            else {}; 
+        },2000);
 
     });
 
 
     elementToHover.addEventListener('mouseleave',(f) => {
-
-        var time_ex = f.timeStamp/1000
         elementToPopup.style.display = 'none';
+        triangToPopup.style.display = 'none';
     });
 
+
+    // INSTRUCTION POPUP - LAYER TOGGLES ---------------------------------------------------------------
+
+    const elementToHover2 = document.getElementById('toggle group');
+    const elementToPopup2 = document.getElementById('instruct-tog');
+
+    elementToHover2.addEventListener('mouseenter',(e) => {
+
+        var rect = elementToHover2.getBoundingClientRect();
+
+        let posX = (rect.right+rect.left)/2
+        let posY = rect.bottom + 25
+
+        var m_pos_x,m_pos_y;
+   
+        window.onmousemove = function(e) { m_pos_x = e.pageX; m_pos_y = e.pageY; }
+
+        setTimeout(function() { 
+            m_pos_x
+            m_pos_y
+            if (m_pos_x > rect.left && m_pos_x < rect.right && m_pos_y > rect.top && m_pos_y < rect.bottom) {
+                elementToPopup2.style.display = 'block';
+                elementToPopup2.style.left = `${posX}px`;
+                elementToPopup2.style.top = `${posY}px`;
+
+                triangToPopup.style.display = 'block';
+                triangToPopup.style.left = `${posX}px`;
+                triangToPopup.style.top = `${posY-12}px`;
+                }
+            else {}; 
+        },2000);
+
+    });
+
+    elementToHover2.addEventListener('mouseleave',(f) => {
+        elementToPopup2.style.display = 'none';
+        triangToPopup.style.display = 'none';
+    });
     
 });
+    
