@@ -43,7 +43,7 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, s
     </div>
     <div class = "title-block">
         <div class = "legend-label">Primary Fuel</div>
-        <div class = "legend">
+        <div class = "legend" id = "toggle group">
 
             <div class = "legend-entry active">
                 <div class = "symbol active" style="background-color: #9e5418;" id="Biomass_symbol"></div>
@@ -127,6 +127,106 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, s
 
         </div>
     </div>
+    <div class = "title-block">
+            <!-- SIZE LEGEND ENTRY  -->
+            <div class = "entry-dropdown active" id="entry-0">
+                <div class = "entry-row">
+                    <div class = "legend-label">Plant Capacity</div>
+                </div>
+                <div class = "entry-row size">
+                    <div class = "circle-container">
+                        <div class = "size-circle small"></div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-circle med"></div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-circle large"></div>
+                    </div>
+                </div>
+                <div class = "entry-row size">
+                    <div class = "circle-container">
+                        <div class = "size-label">100 MW</div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-label">2.5k MW</div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-label">5k MW</div>
+                    </div>
+                </div>
+                <div class = "entry-row">
+                    <div class = "entry-description">
+                        The plant's capacity to generate energy over the course of 1 hour (megawatts).
+                    </div>
+                </div>
+            </div>
+            <div class = "entry-dropdown" id="entry-1">
+                <div class = "entry-row">
+                    <div class = "legend-label">Generated Power</div>
+                </div>
+                <div class = "entry-row size">
+                    <div class = "circle-container">
+                        <div class = "size-circle small"></div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-circle med"></div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-circle large"></div>
+                    </div>
+                </div>
+                <div class = "entry-row size">
+                    <div class = "circle-container">
+                        <div class = "size-label">5k</div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-label">15k</div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-label">30k</div>
+                    </div>
+                </div>
+                <div class = "entry-row">
+                    <div class = "entry-description">
+                        Power generated over the course of a full year (gigawatts).
+                    </div>
+                </div>
+            </div>
+            <div class = "entry-dropdown" id="entry-2">
+                <div class = "entry-row">
+                    <div class = "legend-label">Capacity Factor</div>
+                </div>
+                <div class = "entry-row size">
+                    <div class = "circle-container">
+                        <div class = "size-circle small"></div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-circle med"></div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-circle large"></div>
+                    </div>
+                </div>
+                <div class = "entry-row size">
+                    <div class = "circle-container">
+                        <div class = "size-label">50%</div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-label">75%</div>
+                    </div>
+                    <div class = "circle-container">
+                        <div class = "size-label">100%</div>
+                    </div>
+                </div>
+                <div class = "entry-row">
+                    <div class = "entry-description">
+                        The ratio of generated energy to what would be generated in a year-long max-capacity scenario. 
+                    </div>
+                </div>
+            </div>
+    </div>
+
 </div>
 
 <div class="dropdown">
@@ -136,7 +236,13 @@ body { margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, s
       <a id = "anal2" class = "nocheck">Generated Power</a>
       <a id = "anal3" class = "nocheck">Capacity Factor</a>
     </div>
-  </div>
+</div>
+
+<!-- <div id="elementToHover">Hover Over Content- Javascript Approach</div> -->
+<div class = "triangle" id = "popup tip"></div>
+<div class = "instruct" id="instruct-anal">Click below to change the analysis being displayed</div>
+<div class = "instruct" id="instruct-tog">Use the toggle swithces to turn layers on/off.</div>
+<!-- <div id="elementToPopup_toggle">Click to turn layer on/off</div> -->
 
 <!-- <div id='analtog'> 
     <div class='session checked' id = "anal1">

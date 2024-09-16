@@ -75,3 +75,37 @@ background-color: var(--bghov_color);
     background-color: var(--bghov_color);
     border-radius:5px;
 }
+
+#elementToHover {
+    display: inline-block;
+    position: relative;
+}
+
+
+.instruct {
+    display: none;
+    /* left: 50%;  */
+    transform: translate(-50%, -5%); 
+    position: absolute;
+    font-size: 12px;
+    font-weight: 400;
+    /* background-color: var(--bg_color); */
+    background-color: #037ffc;
+    opacity: 0.8;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    transition-property: display;
+    transition-delay: 5s;
+}
+
+.triangle {
+    display: none;
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #037ffc;
+    opacity: 0.8;
+}
