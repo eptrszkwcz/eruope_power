@@ -14,6 +14,7 @@ const map = new mapboxgl.Map({
     zoom: 4 // starting zoom
 });
 
+
 // Dont forget this part for Hover!
 let hoveredPolygonId = null;
 let clickedPolygonId = null;
@@ -24,18 +25,36 @@ var filter_cats = [];
 
 const anals = ["anal1", "anal2", "anal3"];
 
-const radius_styling = [
-    [ 'interpolate', ['linear'], ['get', 'capacity_m'],
-        0, 1.55,
-        5000,25],
-    [ 'interpolate', ['linear'], ['get', 'estimate_4'],
-        0, 1.55,
-        33000,25],
-    [ 'interpolate', ['linear'], ['get', 'CapFac'],
-        0.5, 1.55,
-        1,25]
-]
 
+// NO scaling with zoom level
+// const radius_styling = [
+//     [ 'interpolate', ['linear'], ['get', 'capacity_m'],
+//         0, 1.55,
+//         5000,25],
+//     [ 'interpolate', ['linear'], ['get', 'estimate_4'],
+//         0, 1.55,
+//         33000,25],
+//     [ 'interpolate', ['linear'], ['get', 'CapFac'],
+//         0.5, 1.55,
+//         1,25]
+// ]
+
+// SCALING with zoom level woot woot!
+const radius_styling = [
+    // CORRECT ZOOM SYNTAX
+    [ 'interpolate', ['linear'], ['zoom'],
+        2, [ 'interpolate', ['linear'], ['get', 'capacity_m'], 0, 0.155, 5000,2.5], 
+        4, [ 'interpolate', ['linear'], ['get', 'capacity_m'], 0, 1.55, 5000,25],
+        6, [ 'interpolate', ['linear'], ['get', 'capacity_m'], 0, 3.1, 5000,50]],
+    [ 'interpolate', ['linear'], ['zoom'],
+        2, [ 'interpolate', ['linear'], ['get', 'estimate_4'], 0, 0.155, 33000,2.5], 
+        4, [ 'interpolate', ['linear'], ['get', 'estimate_4'], 0, 1.55, 33000,25],
+        6, [ 'interpolate', ['linear'], ['get', 'estimate_4'], 0, 3.1, 33000,50]],
+    [ 'interpolate', ['linear'], ['zoom'],
+        2, [ 'interpolate', ['linear'], ['get', 'CapFac'], 0.5, 0.155, 1,2.5], 
+        4, [ 'interpolate', ['linear'], ['get', 'CapFac'], 0.5, 1.55, 1,25],
+        6, [ 'interpolate', ['linear'], ['get', 'CapFac'], 0.5, 3.1, 1,50]],
+]
 
 // let 'A-PrimStyle' = "anal1"
 
